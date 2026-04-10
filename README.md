@@ -58,3 +58,8 @@ The system can be controlled via terminal input or UI using the following codes:
 ```bash
 git clone https://github.com/username/sales-system-js.git
 cd sales-system-js
+
+## Test the project
+```bash
+npm test
+
