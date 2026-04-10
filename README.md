@@ -53,9 +53,13 @@ The system can be controlled via terminal input or UI using the following codes:
 
 # SETUP & TESTING
 
-## Clone the repositorybash
+## Clone the repository
+```bash
 git clone https://github.com/username/sales-system-js.git
 cd sales-system-js
+```
 
-## Test the projectbash
-npm test bunu reporya kopyalicam da boşlukları falan ayarlasana senden kopyaliyim
+## Test the project
+```bash
+npm test
+```
