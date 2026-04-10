@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Script SQL Stored Procedure Sales System</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+</head>
+<body>
+
+  <div id="authOverlay">
+    <div class="card auth-box">
+      <div class="logo-center">
+        <i class="fas fa-database"></i><br>
+        Script SQL Stored Procedure Sales System
+      </div>
+      <p class="auth-subtitle">Please sign in to access the system engine.</p>
+      <button class="full-width" onclick="loginFlow()">
+        <i class="fas fa-sign-in-alt"></i> Login
+      </button>
+      <button class="secondary full-width" onclick="registerFlow()">
+        Request Access
+      </button>
+      <p class="auth-link" onclick="forgotFlow()">Forgot System Password?</p>
+    </div>
+  </div>
+
+  <aside class="sidebar" id="sidebar" style="display:none;">
+    <div class="logo">
+      <i class="fas fa-database"></i> 
+      <span class="logo-text">Sales System</span>
+    </div>
+    
+    <nav>
+      <div class="nav-group">
+        <span class="nav-label">Main Control</span>
+        <div class="nav-item active" onclick="showSection('dashboard')">
+          <i class="fas fa-chart-pie"></i> Dashboard
+        </div>
+        <div class="nav-item" onclick="handleActivityCode('MN23')">
+          <i class="fas fa-boxes-stacked"></i> Product Catalog
+        </div>
+        <div class="nav-item" onclick="handleActivityCode('MM03')">
+          <i class="fas fa-warehouse"></i> Inventory Stock
+        </div>
+      </div>
+
+      <div class="nav-group">
+        <span class="nav-label">Commercial Ops</span>
+        <div class="nav-item" onclick="handleActivityCode('CR01')">
+          <i class="fas fa-file-circle-plus"></i> Create Order
+        </div>
+        <div class="nav-item" onclick="handleActivityCode('UP01')">
+          <i class="fas fa-pen-to-square"></i> Manage Orders
+        </div>
+        <div class="nav-item" onclick="handleActivityCode('AC01')">
+          <i class="fas fa-building-columns"></i> Company Account
+        </div>
+        <div class="nav-item" onclick="handleActivityCode('SL01')">
+          <i class="fas fa-cash-register"></i> Direct Sale
+        </div>
+
+      </div>
+
+      <div class="nav-group">
+        <span class="nav-label">System & Analytics</span>
+        <div class="nav-item" onclick="handleActivityCode('LG01')">
+          <i class="fas fa-map-location-dot"></i> Logistics Map
+        </div>
+        <div class="nav-item" onclick="handleActivityCode('FG01')">
+          <i class="fas fa-chart-line"></i> Financial Analysis
+        </div>
+        <div class="nav-item" onclick="exportTradesToCSV()">
+          <i class="fas fa-file-csv"></i> Export CSV Report
+        </div>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="nav-item danger-text" onclick="logout()">
+        <i class="fas fa-power-off"></i> Terminate Session
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-wrapper" id="mainWrapper" style="display:none;">
+    <header>
+      <div class="header-info">
+        <h1 id="welcomeUser">Welcome back</h1>
+        <p id="subHeader">System Status: Operational | Stored Procedure Engine v2.0</p>
+      </div>
+      <div id="liveClock" class="glass-clock">--:--:--</div>
+    </header>
+
+    <div class="content-area">
+      <div id="section-dashboard">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="nav-label">Company Balance</span>
+            <div class="stat-value" id="dash-balance">$0.00</div>
+          </div>
+          <div class="stat-card">
+            <span class="nav-label">Pending Transactions</span>
+            <div class="stat-value" id="dash-orders">0</div>
+          </div>
+          <div class="stat-card">
+            <span class="nav-label">Total Inventory Items</span>
+            <div class="stat-value" id="dash-inventory">0</div>
+          </div>
+        </div>
+
+    
+      <div class="card action-card">
+        <h3><i></i>  Execute Stored Procedure</h3>
+          <div class="input-group">
+            <input type="text" id="activityInput" placeholder="Enter System Code (e.g., MM03, LG01)...">
+            <button class="execute-btn" onclick="runCode()">
+              <i class="fas fa-play"></i> EXECUTE
+            </button>
+          </div>
+      </div>
+
+        <div id="dynamicContent" class="card display-card">
+          <div class="placeholder-content">
+            <i class="fas fa-terminal fa-3x" style="opacity: 0.1; margin-bottom: 20px;"></i>
+            <p>Ready for input. Select a procedure from the menu or enter a command code.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
